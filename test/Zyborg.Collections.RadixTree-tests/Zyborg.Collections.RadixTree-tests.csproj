@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>    
-    <TargetFramework>netcoreapp1.0</TargetFramework>    
+    <TargetFramework>netcoreapp1.1</TargetFramework>    
     <RootNamespace>Zyborg.Collections</RootNamespace>
   </PropertyGroup>
 
@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Zyborg.RadixTree\Zyborg.Collections.RadixTree.csproj" />
+    <ProjectReference Include="..\..\src\Zyborg.Collections.RadixTree\Zyborg.Collections.RadixTree.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -272,7 +272,7 @@ namespace Zyborg.Collections
 		// Insert is used to add a newentry or update
 		// an existing entry. Returns if updated.
 		//~ func (t *Tree) Insert(s string, v interface{}) (interface{}, bool) {
-		public (TValue oldValue, bool isUpdated) GoInsert(string s, TValue v)
+		public (TValue oldValue, bool updated) GoInsert(string s, TValue v)
 		{
 			//~ var parent *node
 			//~ n := t.root
@@ -455,7 +455,7 @@ namespace Zyborg.Collections
 		// Delete is used to delete a key, returning the previous
 		// value and if it was deleted
 		//!func (t *Tree) Delete(s string) (interface{}, bool) {
-		public (TValue, bool) GoDelete(string s)
+		public (TValue olValue, bool deleted) GoDelete(string s)
 		{
 			//~	var parent *node
 			//~	var label byte
@@ -549,7 +549,7 @@ namespace Zyborg.Collections
 		// Get is used to lookup a specific key, returning
 		// the value and if it was found
 		//~ func (t *Tree) Get(s string) (interface{}, bool) {
-		public (TValue, bool) GoGet(string s)
+		public (TValue value, bool found) GoGet(string s)
 		{
 			//	n := t.root
 			//	search := s
@@ -602,7 +602,7 @@ namespace Zyborg.Collections
 		// LongestPrefix is like Get, but instead of an
 		// exact match, it will return the longest prefix match.
 		//~ func (t *Tree) LongestPrefix(s string) (string, interface{}, bool) {
-		public (string, TValue, bool) LongestPrefix(string s)
+		public (string key, TValue value, bool found) LongestPrefix(string s)
 		{
 			//~ var last *leafNode
 			//~ n := t.root
@@ -661,7 +661,7 @@ namespace Zyborg.Collections
 
 		// Minimum is used to return the minimum value in the tree
 		//~ func (t *Tree) Minimum() (string, interface{}, bool) {
-		public (string, TValue, bool) Minimum()
+		public (string key, TValue value, bool found) Minimum()
 		{
 			//!n := t.root
 			var n = _root;
@@ -693,7 +693,7 @@ namespace Zyborg.Collections
 
 		// Maximum is used to return the maximum value in the tree
 		//~ func (t *Tree) Maximum() (string, interface{}, bool) {
-		public (string, TValue, bool) Maximum()
+		public (string key, TValue value, bool found) Maximum()
 		{
 			//~ n := t.root
 			var n = _root;

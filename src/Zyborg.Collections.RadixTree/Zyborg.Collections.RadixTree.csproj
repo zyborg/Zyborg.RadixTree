@@ -20,7 +20,9 @@
     <FullVersion>$(BaseVersion).$(APPVEYOR_BUILD_NUMBER)</FullVersion>
   </PropertyGroup>
   <Target Name="CheckAppVeyorVersion" Condition="'$(APPVEYOR_BUILD_NUMBER)'!=''" BeforeTargets="Build">
-    <Error Condition="$(FullVersion)!=$(APPVEYOR_BUILD_VERSION)" Text="AppVeyor version does not match BaseVersion!" />
+    <Error Condition="$(FullVersion)!=$(APPVEYOR_BUILD_VERSION)" Text="***********************************************" />
+    <Error Condition="$(FullVersion)!=$(APPVEYOR_BUILD_VERSION)" Text="** AppVeyor version does not match BaseVersion!" />
+    <Error Condition="$(FullVersion)!=$(APPVEYOR_BUILD_VERSION)" Text="***********************************************" />
   </Target>
 
   <PropertyGroup>

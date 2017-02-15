@@ -3,6 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <RootNamespace>Zyborg.Collections</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Zyborg.Collections.RadixTree</AssemblyName>
+    <AssemblyTitle>Radix Tree for .NET</AssemblyTitle>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Authors>https://github.com/zyborg/Zyborg.RadixTree/graphs/contributors</Authors>
+    <Company>https://github.com/zyborg</Company>
+    <Product>Zyborg.RadixTree</Product>
+    <Copyright>Copyright © Eugene Bekker.  All rights reserved.  Licensed under the MIT License.</Copyright>
+    <PackageProjectUrl>https://github.com/zyborg/Zyborg.RadixTree</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zyborg/Zyborg.RadixTree</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <Version>1.0.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Description>.NET implementation of radix trees, ported from the Go implementation.</Description>
+    <PackageLicenseUrl>https://github.com/zyborg/Zyborg.RadixTree/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

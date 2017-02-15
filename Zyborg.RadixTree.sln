@@ -11,6 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zyborg.Collections.RadixTre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zyborg.Collections.RadixTree-tests", "test\Zyborg.Collections.RadixTree-tests\Zyborg.Collections.RadixTree-tests.csproj", "{B78C78AA-0D5F-405F-A8D1-7C31B8CA2C1C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{EEB7421B-56A7-477E-A478-103CAFB995EA}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

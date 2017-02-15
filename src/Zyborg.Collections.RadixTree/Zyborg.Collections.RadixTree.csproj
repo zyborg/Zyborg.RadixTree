@@ -10,12 +10,13 @@
     - Resolve versioning information in concert with AppVeyor environment and
     - also verifies that the base version info here agrees with the AV config
     -->
+  <PropertyGroup>
+    <BaseVersion>1.0.1</BaseVersion>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(APPVEYOR_BUILD_NUMBER)'==''">
-    <BaseVersion>1.0.0</BaseVersion>
     <FullVersion>$(BaseVersion).0</FullVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(APPVEYOR_BUILD_NUMBER)'!=''">
-    <BaseVersion>1.0.0</BaseVersion>
     <FullVersion>$(BaseVersion).$(APPVEYOR_BUILD_NUMBER)</FullVersion>
   </PropertyGroup>
   <Target Name="CheckAppVeyorVersion" Condition="'$(APPVEYOR_BUILD_NUMBER)'!=''" BeforeTargets="Build">

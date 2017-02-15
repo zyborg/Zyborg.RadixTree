@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7B4012CD-ECA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{959281DA-0B6A-416E-80D0-0949889CEA00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zyborg.RadixTree", "src\Zyborg.RadixTree\Zyborg.RadixTree.csproj", "{45123244-1304-4B97-984C-BA8D9766984A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zyborg.Collections.RadixTree", "src\Zyborg.RadixTree\Zyborg.Collections.RadixTree.csproj", "{45123244-1304-4B97-984C-BA8D9766984A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zyborg.RadixTree-tests", "test\Zyborg.RadixTree-tests\Zyborg.RadixTree-tests.csproj", "{B78C78AA-0D5F-405F-A8D1-7C31B8CA2C1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zyborg.Collections.RadixTree-tests", "test\Zyborg.RadixTree-tests\Zyborg.Collections.RadixTree-tests.csproj", "{B78C78AA-0D5F-405F-A8D1-7C31B8CA2C1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

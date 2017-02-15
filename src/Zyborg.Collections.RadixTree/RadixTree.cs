@@ -204,13 +204,13 @@ namespace Zyborg.Collections
 	//~ 	root *node
 	//~ 	size int
 	//~ }
-	public class Tree<TValue>
+	public class RadixTree<TValue>
 	{
 		private Node<TValue> _root;
 		private int _size;
 
 		// New returns an empty Tree
-		public Tree()
+		public RadixTree()
 			: this(null)
 		{ }
 
@@ -223,14 +223,14 @@ namespace Zyborg.Collections
 		//~ 	}
 		//~ 	return t
 		//~ }
-		public Tree(IReadOnlyDictionary<string, TValue> m)
+		public RadixTree(IReadOnlyDictionary<string, TValue> m)
 		{
 			_root = new Node<TValue>();
 			if (m != null)
 			{
 				foreach (var kv in m)
 				{
-					this.Insert(kv.Key, kv.Value);
+					this.GoInsert(kv.Key, kv.Value);
 				}
 			}
 		}
@@ -272,7 +272,7 @@ namespace Zyborg.Collections
 		// Insert is used to add a newentry or update
 		// an existing entry. Returns if updated.
 		//~ func (t *Tree) Insert(s string, v interface{}) (interface{}, bool) {
-		public (TValue oldValue, bool isUpdated) Insert(string s, TValue v)
+		public (TValue oldValue, bool isUpdated) GoInsert(string s, TValue v)
 		{
 			//~ var parent *node
 			//~ n := t.root
@@ -455,7 +455,7 @@ namespace Zyborg.Collections
 		// Delete is used to delete a key, returning the previous
 		// value and if it was deleted
 		//!func (t *Tree) Delete(s string) (interface{}, bool) {
-		public (TValue, bool) Remove(string s)
+		public (TValue, bool) GoDelete(string s)
 		{
 			//~	var parent *node
 			//~	var label byte
@@ -549,7 +549,7 @@ namespace Zyborg.Collections
 		// Get is used to lookup a specific key, returning
 		// the value and if it was found
 		//~ func (t *Tree) Get(s string) (interface{}, bool) {
-		public (TValue, bool) Get(string s)
+		public (TValue, bool) GoGet(string s)
 		{
 			//	n := t.root
 			//	search := s

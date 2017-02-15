@@ -12,11 +12,11 @@ namespace Zyborg.Collections
 		[TestMethod]
 		public void TestFindLongestPrefix()
 		{
-			Assert.AreEqual(6, Tree<object>.FindLongestPrefix("abcdef", "abcdef"));
-			Assert.AreEqual(3, Tree<object>.FindLongestPrefix("abcdef", "abcxyz"));
-			Assert.AreEqual(3, Tree<object>.FindLongestPrefix("abc", "abcxyz"));
-			Assert.AreEqual(3, Tree<object>.FindLongestPrefix("abcxyz", "abc"));
-			Assert.AreEqual(0, Tree<object>.FindLongestPrefix("abc", "xyz"));
+			Assert.AreEqual(6, RadixTree<object>.FindLongestPrefix("abcdef", "abcdef"));
+			Assert.AreEqual(3, RadixTree<object>.FindLongestPrefix("abcdef", "abcxyz"));
+			Assert.AreEqual(3, RadixTree<object>.FindLongestPrefix("abc", "abcxyz"));
+			Assert.AreEqual(3, RadixTree<object>.FindLongestPrefix("abcxyz", "abc"));
+			Assert.AreEqual(0, RadixTree<object>.FindLongestPrefix("abc", "xyz"));
 		}
 
 		[TestMethod]
@@ -36,20 +36,20 @@ namespace Zyborg.Collections
 		public void TestRoot()
 		{
 			//~ r := New()
-			var r = new Tree<int>();
+			var r = new RadixTree<int>();
 
 			//~ _, ok := r.Delete("")
 			//~ if ok {
 			//~ 	t.Fatalf("bad")
 			//~ }
-			var (_, ok) = r.Remove("");
+			var (_, ok) = r.GoDelete("");
 			Assert.IsFalse(ok, "Remove should fail");
 
 			//~ _, ok = r.Insert("", true)
 			//~ if ok {
 			//~ 	t.Fatalf("bad")
 			//~ }
-			(_, ok) = r.Insert("", 0);
+			(_, ok) = r.GoInsert("", 0);
 			Assert.IsFalse(ok, "Insert should not replace");
 
 			//~ val, ok := r.Get("")
@@ -57,7 +57,7 @@ namespace Zyborg.Collections
 			//~ 	t.Fatalf("bad: %v", val)
 			//~ }
 			int val;
-			(val, ok) = r.Get("");
+			(val, ok) = r.GoGet("");
 			Assert.IsTrue(ok, "Get should not find key");
 			Assert.AreEqual(default(int), val, "Get should return default int");
 
@@ -65,7 +65,7 @@ namespace Zyborg.Collections
 			//~ if !ok || val != true {
 			//~ 	t.Fatalf("bad: %v", val)
 			//~ }
-			(val, ok) = r.Remove("");
+			(val, ok) = r.GoDelete("");
 			Assert.IsTrue(ok, "Remove was successful");
 			Assert.AreEqual(default(int), val, "Remove should return default int");
 		}
@@ -75,7 +75,7 @@ namespace Zyborg.Collections
 		public void TestDelete()
 		{
 			//~ r := New()
-			var r = new Tree<int>();
+			var r = new RadixTree<int>();
 
 			//~ s := []string{"", "A", "AB"}
 			var s = new string[] { "", "A", "AB" };
@@ -85,7 +85,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var ss in s)
 			{
-				r.Insert(ss, 1);
+				r.GoInsert(ss, 1);
 			}
 
 			//~ for _, ss := range s {
@@ -96,7 +96,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var ss in s)
 			{
-				var (_, ok) = r.Remove(ss);
+				var (_, ok) = r.GoDelete(ss);
 				Assert.IsTrue(ok, "Removed key");
 			}
 		}
@@ -106,7 +106,7 @@ namespace Zyborg.Collections
 		public void TestLongestPrefix()
 		{
 			//~ r := New()
-			var r = new Tree<int>();
+			var r = new RadixTree<int>();
 
 			//~ keys := []string{
 			//~ 	"",
@@ -132,7 +132,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var k in keys)
 			{
-				r.Insert(k, 1);
+				r.GoInsert(k, 1);
 			}
 			Assert.AreEqual(keys.Length, r.Count, "Tree count and key count match");
 
@@ -193,7 +193,7 @@ namespace Zyborg.Collections
 		public void TestWalkPrefix()
 		{
 			//~ r := New()
-			var r = new Tree<int>();
+			var r = new RadixTree<int>();
 
 			//~ keys := []string{
 			//~ 	"foobar",
@@ -217,7 +217,7 @@ namespace Zyborg.Collections
 			//~ 	t.Fatalf("bad len: %v %v", r.Len(), len(keys))
 			//~ }
 			foreach (var k in keys)
-				r.Insert(k, 1);
+				r.GoInsert(k, 1);
 			Assert.AreEqual(keys.Length, r.Count, "Tree count and key count match");
 
 			//~ type exp struct {
@@ -334,7 +334,7 @@ namespace Zyborg.Collections
 		public void TestWalkPath()
 		{
 			//~ r := New()
-			var r = new Tree<int>();
+			var r = new RadixTree<int>();
 
 			//~ keys := []string{
 			//~ 	"foo",
@@ -360,7 +360,7 @@ namespace Zyborg.Collections
 			//	t.Fatalf("bad len: %v %v", r.Len(), len(keys))
 			//}
 			foreach (var k in keys)
-				r.Insert(k, 1);
+				r.GoInsert(k, 1);
 			Assert.AreEqual(keys.Length, r.Count, "Tree count is equal to key count");
 
 			//~ type exp struct {
@@ -491,7 +491,7 @@ namespace Zyborg.Collections
 			//~ if r.Len() != len(inp) {
 			//~ 	t.Fatalf("bad length: %v %v", r.Len(), len(inp))
 			//~ }
-			var r = new Tree<int>(inp);
+			var r = new RadixTree<int>(inp);
 			Assert.AreEqual(inp.Count, r.Count, "Tree count matches input map count");
 
 
@@ -516,7 +516,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var kv in inp)
 			{
-				var (@out, ok) = r.Get(kv.Key);
+				var (@out, ok) = r.GoGet(kv.Key);
 				Assert.IsTrue(ok, "Contains key for Get");
 				Assert.AreEqual(kv.Value, @out, "Found expected value by key");
 			}
@@ -546,7 +546,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var kv in inp)
 			{
-				var (@out, ok) = r.Remove(kv.Key);
+				var (@out, ok) = r.GoDelete(kv.Key);
 				Assert.IsTrue(ok, "Contains key for Remove");
 				Assert.AreEqual(kv.Value, @out, "Removed expected value by key");
 			}
@@ -562,7 +562,7 @@ namespace Zyborg.Collections
 		//~ func TestRadix(t *testing.T) {
 		public void TestRadixSmall()
 		{
-			Action<Tree<int>> printer = x =>
+			Action<RadixTree<int>> printer = x =>
 			{
 				Debug.WriteLine("----------------------------");
 				using (var ms = new MemoryStream())
@@ -609,11 +609,11 @@ namespace Zyborg.Collections
 			//~ if r.Len() != len(inp) {
 			//~ 	t.Fatalf("bad length: %v %v", r.Len(), len(inp))
 			//~ }
-			var r = new Tree<int>();
+			var r = new RadixTree<int>();
 			printer(r);
 			foreach (var kv in inp)
 			{
-				r.Insert(kv.Key, kv.Value);
+				r.GoInsert(kv.Key, kv.Value);
 				printer(r);
 			}
 
@@ -642,7 +642,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var kv in inp)
 			{
-				var (@out, ok) = r.Get(kv.Key);
+				var (@out, ok) = r.GoGet(kv.Key);
 				Assert.IsTrue(ok, "Contains key for Get");
 				Assert.AreEqual(kv.Value, @out, "Found expected value by key");
 			}
@@ -672,7 +672,7 @@ namespace Zyborg.Collections
 			//~ }
 			foreach (var kv in inp)
 			{
-				var (@out, ok) = r.Remove(kv.Key);
+				var (@out, ok) = r.GoDelete(kv.Key);
 				Assert.IsTrue(ok, "Contains key for Remove");
 				Assert.AreEqual(kv.Value, @out, "Removed expected value by key");
 			}

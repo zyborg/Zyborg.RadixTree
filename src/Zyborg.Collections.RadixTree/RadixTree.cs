@@ -455,7 +455,7 @@ namespace Zyborg.Collections
 		// Delete is used to delete a key, returning the previous
 		// value and if it was deleted
 		//!func (t *Tree) Delete(s string) (interface{}, bool) {
-		public (TValue olValue, bool deleted) GoDelete(string s)
+		public (TValue oldValue, bool deleted) GoDelete(string s)
 		{
 			//~	var parent *node
 			//~	var label byte
